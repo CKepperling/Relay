@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(relay
     src/main.cpp
+    src/User.cpp
 )
 
 target_compile_options(relay PRIVATE
