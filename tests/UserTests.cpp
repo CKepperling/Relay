@@ -6,13 +6,11 @@
 
 int main()
 {
-    // Test 1: valid user
     User user(1, "John");
 
     assert(user.getId() == 1);
     assert(user.getUsername() == "John");
 
-    // Test 2: empty username should throw
     bool exceptionThrown = false;
 
     try
