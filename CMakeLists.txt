@@ -8,9 +8,21 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(relay
     src/main.cpp
+    src/User.cpp
+)
+
+add_executable(user_tests
+    tests/UserTests.cpp
+    src/User.cpp
 )
 
 target_compile_options(relay PRIVATE
+    -Wall
+    -Wextra
+    -Wpedantic
+)
+
+target_compile_options(user_tests PRIVATE
     -Wall
     -Wextra
     -Wpedantic
