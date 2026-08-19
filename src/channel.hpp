@@ -12,12 +12,14 @@ public:
 
     const std::string &getName() const;
 
+    std::vector<User> getUserVector();
+
 
     int addUser(User user);
 
     int removeUser();
 
-    std::string getUsers();
+    std::string getUserList();
 
 private:
     int id_;

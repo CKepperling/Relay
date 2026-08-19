@@ -20,6 +20,11 @@ const std::string &Channel::getName() const
     return name_;
 }
 
+std::vector<User> getUserVector()
+{
+    return;
+}
+
 int addUser(User user)
 {
 
@@ -30,10 +35,6 @@ int removeUser(User user)
 
 }
 
-std::string getUserVector()
-{
-    
-}
 
 std::string getUserList()
 {
