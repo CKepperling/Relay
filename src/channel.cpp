@@ -2,6 +2,7 @@
 
 #include <stdexcept>
 #include <vector>
+#include <algorithm>
 
 Channel::Channel(int id, const std::string &name) : id_(id), name_(name)
 {
@@ -9,6 +10,8 @@ Channel::Channel(int id, const std::string &name) : id_(id), name_(name)
     {
         throw std::invalid_argument("Channel cannot be empty");
     }
+
+    std::vector<User> users_;
 }
 
 int Channel::getId() const
@@ -28,17 +31,38 @@ const std::vector<User>& Channel::getUsers() const
 
 bool Channel::addUser(User user)
 {
+    std::vector<User> users = getUsers();
 
+    int length = users.size();
+
+    users.push_back(user);
+
+    // return true if length is now + 1 for an added user
+    return length + 1 == users.size();
 }
 
-// maybe move these to using User ids instead
-bool Channel::removeUser(User user)
+bool Channel::removeUser(int userId)
 {
+    auto it = std::find_if(
+        users_.begin(),
+        users_.end(),
+        [userId](const User& user)
+        {
+            return user.getId() == userId;
+        }
+    );
 
+    if (it != users_.end())
+    {
+        users_.erase(it);
+        return true;
+    }
+
+    return false;
 }
 
 
 std::string Channel::getUserList() const
 {
-    
+    // Go through all users and print out a list \n each for every user in the channel
 }

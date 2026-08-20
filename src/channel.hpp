@@ -17,7 +17,7 @@ public:
 
     bool addUser(User user);
 
-    bool removeUser(User user);
+    bool removeUser(int userId);
 
     std::string getUserList() const;
 
