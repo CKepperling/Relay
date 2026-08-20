@@ -1,25 +1,25 @@
+#include <string>
 #include <vector>
-#include <User.hpp>
+
+#include "User.hpp"
 
 class Channel
 {
 public:
-    Channel();
-
-    Channel(int id, const std::string &name, std::vector<User> users);
+    Channel(int id, const std::string &name);
 
     int getId() const;
 
     const std::string &getName() const;
 
-    std::vector<User> getUserVector();
+    const std::vector<User>& getUsers() const;
 
 
-    int addUser(User user);
+    bool addUser(User user);
 
-    int removeUser();
+    bool removeUser(User user);
 
-    std::string getUserList();
+    std::string getUserList() const;
 
 private:
     int id_;
@@ -27,4 +27,5 @@ private:
     std::string name_;
 
     std::vector<User> users_;
+
 };

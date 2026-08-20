@@ -1,12 +1,13 @@
-#include <channel.hpp>
+#include "channel.hpp"
+
 #include <stdexcept>
 #include <vector>
 
-Channel::Channel(int id, const std::string &name, std::vector<User> users) : id_(id), name_(name), users_(users)
+Channel::Channel(int id, const std::string &name) : id_(id), name_(name)
 {
     if (name.empty())
     {
-        throw std::invalid_argument("Username cannot be empty");
+        throw std::invalid_argument("Channel cannot be empty");
     }
 }
 
@@ -20,23 +21,24 @@ const std::string &Channel::getName() const
     return name_;
 }
 
-std::vector<User> getUserVector()
+const std::vector<User>& Channel::getUsers() const
 {
-    return;
+    return users_;
 }
 
-int addUser(User user)
-{
-
-}
-
-int removeUser(User user)
+bool Channel::addUser(User user)
 {
 
 }
 
+// maybe move these to using User ids instead
+bool Channel::removeUser(User user)
+{
 
-std::string getUserList()
+}
+
+
+std::string Channel::getUserList() const
 {
     
 }
