@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string>
 #include <vector>
 
@@ -15,11 +17,11 @@ public:
     const std::vector<User>& getUsers() const;
 
 
-    bool addUser(User user);
+    bool addUser(const User& user);
 
     bool removeUser(int userId);
 
-    std::string getUserList() const;
+    void printUserList() const;
 
 private:
     int id_;

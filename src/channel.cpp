@@ -1,17 +1,16 @@
 #include "channel.hpp"
 
-#include <stdexcept>
-#include <vector>
 #include <algorithm>
+#include <iostream>
+#include <stdexcept>
 
-Channel::Channel(int id, const std::string &name) : id_(id), name_(name)
+Channel::Channel(int id, const std::string& name)
+    : id_(id), name_(name)
 {
     if (name.empty())
     {
-        throw std::invalid_argument("Channel cannot be empty");
+        throw std::invalid_argument("Channel name cannot be empty");
     }
-
-    std::vector<User> users_;
 }
 
 int Channel::getId() const
@@ -19,7 +18,7 @@ int Channel::getId() const
     return id_;
 }
 
-const std::string &Channel::getName() const
+const std::string& Channel::getName() const
 {
     return name_;
 }
@@ -29,16 +28,24 @@ const std::vector<User>& Channel::getUsers() const
     return users_;
 }
 
-bool Channel::addUser(User user)
+bool Channel::addUser(const User& user)
 {
-    std::vector<User> users = getUsers();
+    auto it = std::find_if(
+        users_.begin(),
+        users_.end(),
+        [user](const User& existingUser)
+        {
+            return existingUser.getId() == user.getId();
+        }
+    );
 
-    int length = users.size();
+    if (it != users_.end())
+    {
+        return false;
+    }
 
-    users.push_back(user);
-
-    // return true if length is now + 1 for an added user
-    return length + 1 == users.size();
+    users_.push_back(user);
+    return true;
 }
 
 bool Channel::removeUser(int userId)
@@ -61,8 +68,13 @@ bool Channel::removeUser(int userId)
     return false;
 }
 
-
-std::string Channel::getUserList() const
+void Channel::printUserList() const
 {
-    // Go through all users and print out a list \n each for every user in the channel
+    for (const auto& user : users_)
+    {
+        std::cout << user.getUsername()
+                  << ", "
+                  << user.getId()
+                  << "\n";
+    }
 }
