@@ -103,6 +103,30 @@ void testDuplicateUser()
     assert(channel.getUsers().size() == 1);
 }
 
+void testHasUser()
+{
+    Channel channel(1, "general");
+
+    User clayton(1, "Clayton");
+    User alice(2, "Alice");
+
+    channel.addUser(clayton);
+    channel.addUser(alice);
+
+    // Users who are members should be found
+    assert(channel.hasUser(1));
+    assert(channel.hasUser(2));
+
+    // A user who is not a member should not be found
+    assert(!channel.hasUser(3));
+
+    // Check again after removing a user
+    channel.removeUser(1);
+
+    assert(!channel.hasUser(1));
+    assert(channel.hasUser(2));
+}
+
 int main()
 {
     testChannelCreation();
@@ -112,6 +136,7 @@ int main()
     testDuplicateUser();
     testRemoveUser();
     testRemoveNonexistentUser();
+    testHasUser();
 
     std::cout << "All Channel tests passed!\n";
 

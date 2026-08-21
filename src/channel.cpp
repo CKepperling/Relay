@@ -79,7 +79,7 @@ void Channel::printUserList() const
     }
 }
 
-bool Channel::hasUser(int userId)
+bool Channel::hasUser(int userId) const
 {
     for (const auto& user : users_)
     {

@@ -23,7 +23,7 @@ public:
 
     void printUserList() const;
 
-    bool hasUser(int userId);
+    bool hasUser(int userId) const;
 
 private:
     int id_;
