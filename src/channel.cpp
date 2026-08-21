@@ -78,3 +78,16 @@ void Channel::printUserList() const
                   << "\n";
     }
 }
+
+bool Channel::hasUser(int userId)
+{
+    for (const auto& user : users_)
+    {
+        if (user.getId() == userId)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}

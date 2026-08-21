@@ -89,20 +89,6 @@ void testRemoveNonexistentUser()
     assert(channel.getUsers().size() == 1);
 }
 
-int main()
-{
-    testChannelCreation();
-    testEmptyChannelName();
-    testAddUser();
-    testAddMultipleUsers();
-    testRemoveUser();
-    testRemoveNonexistentUser();
-
-    std::cout << "All Channel tests passed!\n";
-
-    return 0;
-}
-
 void testDuplicateUser()
 {
     Channel channel(1, "general");
@@ -116,3 +102,19 @@ void testDuplicateUser()
     assert(!secondAdd);
     assert(channel.getUsers().size() == 1);
 }
+
+int main()
+{
+    testChannelCreation();
+    testEmptyChannelName();
+    testAddUser();
+    testAddMultipleUsers();
+    testDuplicateUser();
+    testRemoveUser();
+    testRemoveNonexistentUser();
+
+    std::cout << "All Channel tests passed!\n";
+
+    return 0;
+}
+
