@@ -1,24 +1,44 @@
 #include <iostream>
-#include <stdexcept>
 
 #include "User.hpp"
+#include "channel.hpp"
 
 int main()
 {
-    std::cout << "=== Relay User Test ===" << std::endl;
+    std::cout << "=== Relay Channel Test ===\n";
 
-    try
-    {
-        User user(1, "John");
+    User clayton(1, "Clayton");
+    User alice(2, "Alice");
+    User bob(3, "Bob");
 
-        std::cout << "User created successfully!" << std::endl;
-        std::cout << "ID: " << user.getId() << std::endl;
-        std::cout << "Username: " << user.getUsername() << std::endl;
-    }
-    catch (const std::exception &e)
+    Channel general(1, "general");
+
+    std::cout << "Channel ID: "
+              << general.getId() << "\n";
+
+    std::cout << "Channel Name: "
+              << general.getName() << "\n";
+
+    general.addUser(clayton);
+    general.addUser(alice);
+    general.addUser(bob);
+
+    std::cout << "\nMembers:\n";
+    general.printUserList();
+
+    std::cout << "\nRemoving Alice...\n";
+
+    if (general.removeUser(2))
     {
-        std::cout << "Error: " << e.what() << std::endl;
+        std::cout << "Alice removed successfully.\n";
     }
+    else
+    {
+        std::cout << "Alice was not found.\n";
+    }
+
+    std::cout << "\nMembers after removal:\n";
+    general.printUserList();
 
     return 0;
 }
